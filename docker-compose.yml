@@ -8,3 +8,16 @@ services:
     env_file:
       - ./backend/.env
     restart: always
+
+  db:
+    image: postgres:18-alpine
+    env_file:
+      - ./backend/.env
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - "database:/var/lib/postgresql/18/docker"
+    restart: always
+
+volumes:
+  database:
